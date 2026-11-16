@@ -1,0 +1,27 @@
+\begin{table}[htbp]
+\centering
+\caption{Effect of signer count on proof performance at $N=1024$. Times are medians (IQR) in milliseconds over 30 measurements per entry. The inverse format has constant size across these signer counts.}
+\label{tab:evaluation-signer-count}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{r l r r r}
+\toprule
+$k$ & Implementation & \shortstack{Generation\\ms (IQR)} & \shortstack{Verification\\ms (IQR)} & \shortstack{Format\\bytes} \\
+\midrule
+1 & Inverse & 576.181 (31.543) & 161.456 (14.770) & 1049 \\
+1 & GK15 ($k$-fold) & 614.267 (14.796) & 106.471 (4.197) & 2312 \\
+\addlinespace
+2 & Inverse & 563.423 (24.011) & 159.315 (5.973) & 1049 \\
+2 & GK15 ($k$-fold) & 1231.405 (23.111) & 214.827 (6.369) & 4624 \\
+\addlinespace
+4 & Inverse & 559.545 (17.953) & 159.204 (5.281) & 1049 \\
+4 & GK15 ($k$-fold) & 2461.531 (41.827) & 429.014 (11.076) & 9248 \\
+\addlinespace
+8 & Inverse & 558.990 (23.787) & 159.723 (4.124) & 1049 \\
+8 & GK15 ($k$-fold) & 4956.311 (81.954) & 866.765 (29.416) & 18496 \\
+\addlinespace
+16 & Inverse & 568.159 (21.219) & 160.061 (4.206) & 1049 \\
+16 & GK15 ($k$-fold) & 9867.478 (308.170) & 1721.235 (42.327) & 36992 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,28 @@
+\begin{table}[htbp]
+\centering
+\caption{Proof performance comparison at $k=4$ and $N\in\{16,32,64,128\}$. Times are medians (IQR) in milliseconds over 30 measurements per entry. Format sizes follow the stated element counts.}
+\label{tab:revised-common-domain}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{r l r r r}
+\toprule
+$N$ & Implementation & \shortstack{Generation\\ms (IQR)} & \shortstack{Verification\\ms (IQR)} & \shortstack{Format\\bytes} \\
+\midrule
+16 & Auxiliary-vector & 21.540 (0.197) & 7.941 (0.054) & 782 \\
+16 & Inverse & 12.187 (1.268) & 5.222 (0.548) & 653 \\
+16 & GK15 ($k$-fold) & 26.999 (1.691) & 16.071 (1.080) & 3776 \\
+\addlinespace
+32 & Auxiliary-vector & 39.788 (0.361) & 13.363 (0.043) & 848 \\
+32 & Inverse & 22.101 (0.166) & 7.931 (0.054) & 719 \\
+32 & GK15 ($k$-fold) & 52.889 (2.630) & 24.210 (0.964) & 4688 \\
+\addlinespace
+64 & Auxiliary-vector & 79.175 (4.682) & 24.759 (1.358) & 914 \\
+64 & Inverse & 40.506 (0.578) & 13.408 (0.393) & 785 \\
+64 & GK15 ($k$-fold) & 116.063 (9.366) & 40.478 (2.928) & 5600 \\
+\addlinespace
+128 & Auxiliary-vector & 148.258 (2.832) & 43.086 (1.571) & 980 \\
+128 & Inverse & 79.670 (2.573) & 24.949 (0.941) & 851 \\
+128 & GK15 ($k$-fold) & 246.023 (5.033) & 68.493 (1.707) & 6512 \\
+\bottomrule
+\end{tabular}
+\end{table}

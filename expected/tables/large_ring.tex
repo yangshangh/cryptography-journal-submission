@@ -1,0 +1,24 @@
+\begin{table}[htbp]
+\centering
+\caption{Effect of ring size on proof performance at $k=4$. Times are medians (IQR) in milliseconds over 30 measurements per entry. Format sizes exclude the message, ring and public parameters.}
+\label{tab:evaluation-large-ring}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{r l r r r}
+\toprule
+$N$ & Implementation & \shortstack{Generation\\ms (IQR)} & \shortstack{Verification\\ms (IQR)} & \shortstack{Format\\bytes} \\
+\midrule
+128 & Inverse & 75.309 (0.526) & 23.685 (0.115) & 851 \\
+128 & GK15 ($k$-fold) & 250.429 (21.371) & 69.055 (6.954) & 6512 \\
+\addlinespace
+256 & Inverse & 152.723 (11.867) & 45.725 (4.157) & 917 \\
+256 & GK15 ($k$-fold) & 533.819 (11.839) & 123.360 (2.547) & 7424 \\
+\addlinespace
+512 & Inverse & 289.073 (6.360) & 83.054 (2.286) & 983 \\
+512 & GK15 ($k$-fold) & 1157.533 (28.504) & 225.908 (8.142) & 8336 \\
+\addlinespace
+1024 & Inverse & 559.545 (17.953) & 159.204 (5.281) & 1049 \\
+1024 & GK15 ($k$-fold) & 2461.531 (41.827) & 429.014 (11.076) & 9248 \\
+\bottomrule
+\end{tabular}
+\end{table}
