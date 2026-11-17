@@ -1,6 +1,6 @@
 from pathlib import Path
-import argparse, platform, subprocess, sys
-import csv, json, math, statistics, hashlib, re
+import argparse, platform, subprocess
+import csv, math, statistics
 from collections import defaultdict
 import matplotlib
 matplotlib.use('Agg')
@@ -32,12 +32,12 @@ def quantile(v,p):
 def size(s,N,k):
  n=N.bit_length()-1
  return (2*n+6)*33+10*32 if s==S[0] else ((2*n+5)*33+7*32 if s==S[1] else k*(4*n*33+(3*n+1)*32))
-stats={}; total=0; sourcefiles={}
+stats={}; total=0; sourcefiles=set()
 for campaign,arms in FILES.items():
  for scheme,files in arms.items():
   groups=defaultdict(list)
   for rel in files:
-   p=RAW/rel; sourcefiles[str(p.relative_to(ROOT)).replace('\\','/')]=hashlib.sha256(p.read_bytes()).hexdigest()
+   p=RAW/rel; sourcefiles.add(rel)
    rows=list(csv.DictReader(p.open(encoding='utf-8-sig',newline='')))
    for r in rows:
     assert r['scheme']==scheme
