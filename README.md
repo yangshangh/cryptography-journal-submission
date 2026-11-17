@@ -2,6 +2,17 @@
 
 Code and experimental data accompanying the article by Shanghua Yang, Yubo Song, and Shang Gao.
 
+## Directory structure
+
+| Directory | Contents |
+|---|---|
+| `code/` | Rust implementations of the inverse, auxiliary-vector, and GK15 proof benchmarks, with their dependency files. |
+| `data/` | Eight raw experimental CSV files: `common/` contains the common-domain comparison and `main/` contains the large-ring, signer-count, and encoding-cost experiments. |
+| `expected/` | Reference CSV and LaTeX tables from the article, used to check the regenerated results. |
+| `scripts/` | `reproduce.py` regenerates tables and figures from the recorded data; `benchmarks.py` builds and runs new experiments. |
+
+The scripts create `results/` for regenerated tables and figures and `benchmark_runs/` for new timing measurements. These output directories are excluded from Git.
+
 ## Reproduce the tables and figures
 
 Use Python 3.12:
