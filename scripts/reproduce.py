@@ -93,12 +93,27 @@ for name,rs in sets.items():
   text.append(f"{x} & {NAMES[d['scheme']]} & {p} ({pi}) & {v} ({vi}) & {d['paper_size_bytes']} "+r'\\')
  text +=[r'\bottomrule',r'\end{tabular}',r'\end{table}']
  (OUT/(name+'.tex')).write_text('\n'.join(text)+'\n',encoding='utf-8')
-text=[r'\begin{table}[htbp]',r'\centering',r'\caption{Comparison of nonemptiness constraints at $k=16$. Speedups are auxiliary-vector medians divided by inverse medians; sizes are format calculations.}',r'\label{tab:evaluation-encoding}',r'\small',r'\begin{tabular}{r r r r r}',r'\toprule',r'$N$ & \shortstack{Generation\\speedup} & \shortstack{Verification\\speedup} & \shortstack{Auxiliary\\format bytes} & \shortstack{Inverse\\format bytes} \\',r'\midrule']
+text = [
+    r'\begin{table}[htbp]',
+    r'\centering',
+    r'\caption{Comparison of nonemptiness constraints at $k=16$. Time ratios divide the auxiliary-vector median by the inverse median for each local proof operation. Format sizes are calculated from element counts.}',
+    r'\label{tab:evaluation-encoding}',
+    r'\small',
+    r'\begin{tabular}{r r r r r}',
+    r'\toprule',
+    r'$N$ & \shortstack{Generation\\time ratio} & \shortstack{Verification\\time ratio} & \shortstack{Auxiliary\\format bytes} & \shortstack{Inverse\\format bytes} \\',
+    r'\midrule',
+]
 for d in ablation:
  p=f"{d['prove_speedup']:.2f}";v=f"{d['verify_speedup']:.2f}"
- text.append(f"{d['ring_size']} & {p}"+r'$\times$'+f" & {v}"+r'$\times$'+f" & {d['auxiliary_format_bytes']} & {d['inverse_format_bytes']} "+r'\\')
+ ring_size = d['ring_size']
+ domain_mark = r'$^\dagger$' if ring_size >= 256 else ''
+ text.append(
+     rf"{ring_size}{domain_mark} & {p}$\times$ & {v}$\times$ & "
+     rf"{d['auxiliary_format_bytes']} & {d['inverse_format_bytes']} \\"
+ )
  printed_checks.append(dict(table='implementation_comparison',**d,printed_prove_speedup=p,printed_verify_speedup=v))
-text +=[r'\bottomrule',r'\end{tabular}',r'\par\smallskip',r'\begin{minipage}{0.92\linewidth}\footnotesize At $N\geq256$, the auxiliary relation fails $2^N-1<q$; these entries are computational baselines for the length-$2N$ encoding.\end{minipage}',r'\end{table}']
+text +=[r'\bottomrule',r'\end{tabular}',r'\par\smallskip',r'\begin{minipage}{0.92\linewidth}\footnotesize $^\dagger$~The auxiliary relation requires $2^N-1<q$. Marked rows fall outside this domain and report computational costs for the length-$2N$ encoding.\end{minipage}',r'\end{table}']
 (OUT/'implementation_comparison.tex').write_text('\n'.join(text)+'\n',encoding='utf-8')
 # Vector publication figures: timing panels show Q1--Q3, all axes start at zero.
 plt.rcParams.update({'font.family':'DejaVu Sans','font.size':11,'axes.labelsize':11,'axes.titlesize':10.5,'xtick.labelsize':10,'ytick.labelsize':10,'legend.fontsize':10.5,'pdf.fonttype':42,'ps.fonttype':42})
